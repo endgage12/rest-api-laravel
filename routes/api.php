@@ -15,21 +15,20 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-//Route::resource('products', ProductController::class);
 
-//Public routes
-Route::post('/register', [AuthController::class, 'register']); //register - зарегистрироваться
-Route::post('/login', [AuthController::class, 'login']);
-Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/{id}', [ProductController::class, 'show']);
-Route::get('/products/search/{name}', [ProductController::class, 'search']);
+// Открытые для всех API
+Route::post('/register', [AuthController::class, 'register']); // зарегистрироваться (логин, почта, пароль)
+Route::post('/login', [AuthController::class, 'login']); // авторизация (вход по почте)
+Route::get('/products', [ProductController::class, 'index']); // главная страница, наверное, не требуется
+Route::get('/products/{id}', [ProductController::class, 'show']); // конкретная страница (допустим, конкретная песня)
+Route::get('/products/search/{name}', [ProductController::class, 'search']); // поиск по вхождению части слова
 
-// Protected routes
+// API после авторизации
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::post('/products', [ProductController::class, 'store']);
-    Route::put('/products/{id}', [ProductController::class, 'update']);
-    Route::delete('/products/{id}', [ProductController::class, 'destroy']);
-    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/products', [ProductController::class, 'store']); // сохранить данные в БД : имя, красивый url (может не требуется), описание, цена
+    Route::put('/products/{id}', [ProductController::class, 'update']); // редактировать поля
+    Route::delete('/products/{id}', [ProductController::class, 'destroy']); // удалить конкретный элемент БД
+    Route::post('/logout', [AuthController::class, 'logout']); // выйти из аккаунта
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
