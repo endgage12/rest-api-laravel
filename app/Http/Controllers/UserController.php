@@ -25,7 +25,7 @@ class UserController extends Controller
 
     public function get_rolenames()
     {
-        return DB::table('roles')->get();
+        return DB::table('roles')->get('rolename');
     }
 
     public function personal_page($id) {
