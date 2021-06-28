@@ -37,7 +37,7 @@ Route::get('/get_rolenames', [UserController::class, 'get_rolenames']); // по�
 
 // Группы
 Route::get('/list-group', [GroupController::class, 'index']); // получить список всех записей таблицы групп
-Route::get('/list-group/{group}/mship', [GroupController::class, 'memberships']);
+Route::get('/list-group/{group}/mship', [GroupController::class, 'memberships']); // список участников какой-либо группы
 
 // API после авторизации
 Route::group(['middleware' => ['auth:sanctum']], function () {
