@@ -9,5 +9,9 @@ class Group extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'founder'];
+    protected $fillable = ['name', 'founder', 'member'];
+
+    public function memberships() {
+        return $this->hasMany(Membership::class, 'group_id', 'id');
+    }
 }

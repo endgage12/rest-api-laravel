@@ -36,7 +36,8 @@ Route::get('/users/{name}', [UserController::class, 'search_by_name']); // по�
 Route::get('/get_rolenames', [UserController::class, 'get_rolenames']); // получить список ролей
 
 // Группы
-Route::get('/list-group', [GroupController::class, 'index']);
+Route::get('/list-group', [GroupController::class, 'index']); // получить список всех записей таблицы групп
+Route::get('/list-group/{group}/mship', [GroupController::class, 'memberships']);
 
 // API после авторизации
 Route::group(['middleware' => ['auth:sanctum']], function () {
