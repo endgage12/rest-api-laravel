@@ -8,6 +8,7 @@ use App\Models\User;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 
 class UserController extends Controller
 {
@@ -37,5 +38,10 @@ class UserController extends Controller
         $user = User::find($id);
         $user->update($request->all());
         return $user;
+    }
+
+    public function test__() {
+        $routeCollection = Route::getRoutes();
+        return view('welcome', compact('routeCollection'));
     }
 }
