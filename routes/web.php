@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
-Route::get('/', [UserController::class, 'test__']);
+Route::get('/', function () {
+    return view('index');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
